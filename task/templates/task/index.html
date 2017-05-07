@@ -2,16 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% if all_tasks %}
-    <ul>
-        {%for task in all_tasks %}
-            <li><a href="/task/{{ task.id }}/"> {{ task.title }}</a> </li>
-        {%endfor%}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    </ul>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">Task Cracker</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#TaskTable">Overview</a></li>
+                <li><a href="About.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+{% if all_tasks %}
+    <div class="container">
+        <h1 id="TaskTable">Task Overview</h1>
+        <div class="row">
+            <div class="col-sm-9" style="background-color:white;">
+                <h4>The project includes the following TODO tasks</h4>
+            </div>
+            <div class="col-sm-3" style="background-color:white;">
+                <a href="CreateNewTODO.html" class="btn btn-primary" role="button">Create New Task</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Assignee</th>
+                <th>Deadline</th>
+                <th>Progress</th>
+                <th>Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+        {%for task in all_tasks %}
+                <tr>
+                    <td><a href="/task/{{ task.id }}/"> {{ task.title }}</a></td>
+                    <td>
+                         {{ task.assignee }}
+                    </td>
+                     <td>
+                         {{ task.deadline }}
+                      </td>
+                      <td>
+                        {{ task.progress }}
+                     </td>
+                     <td>
+                        <a href="EditTODO_Task1.html" class="btn btn-primary" role="button"><span
+                            class="glyphicon glyphicon-edit"></span>Edit</a>
+                        <a href="" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
+                    </td>
+                    </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% else %}
     <h3>You haven't added any tasks</h3>
 {% endif %}
