@@ -9,12 +9,12 @@ class Task(models.Model):
     PROGRESS_CHOICES = (
         (NOTSTARTED, 'Not Started'),
         (INPROGRESS, 'In Progress'),
-        (FINISHED, 'Finished'),
+        (FINISHED, 'F'),
     )
     progress = models.CharField(
         max_length=2,
         choices=PROGRESS_CHOICES,
-        default=NOTSTARTED,
+        default=NOTSTARTED,inished
     )
     assignee = models.CharField(max_length=250)
     title = models.CharField(max_length=250)
