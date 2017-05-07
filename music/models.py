@@ -14,9 +14,9 @@ class Task(models.Model):
     progress = models.CharField(
         max_length=2,
         choices=PROGRESS_CHOICES,
-        default=NOTSTARTED,inished
+        default=NOTSTARTED,
     )
-    assignee = models.CharField(max_length=250)
+    assignee = models.ForeignKey('auth.User')
     title = models.CharField(max_length=250)
     description = models.TextField()
     deadline = models.DateTimeField(
