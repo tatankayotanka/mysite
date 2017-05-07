@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    #manages the urls of the whole site, when user requests music, it goes to music.urls
+    #manages the urls of the whole site, when user requests task, it goes to task.urls
     url(r'^admin/', admin.site.urls),
-    url(r'^music/', include('music.urls')),
+    url(r'^task/', include('task.urls')),
 ]
