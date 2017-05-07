@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from datetime import date
 
 
 class Task(models.Model):
@@ -19,8 +20,7 @@ class Task(models.Model):
     assignee = models.ForeignKey('auth.User')
     title = models.CharField(max_length=250)
     description = models.TextField()
-    deadline = models.DateTimeField(
-            default=timezone.now)
+    deadline = models.DateField()
     created_date = models.DateTimeField(
         blank=True, null=True)
 
@@ -29,7 +29,7 @@ class Task(models.Model):
       self.save()
 
     def __str__(self):
-      return self.title + " before "+str(self.deadline)
+      return self.title
 
 
 

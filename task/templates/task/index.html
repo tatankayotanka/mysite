@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Title</title>
+    <title>TaskCracker</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -50,7 +50,7 @@
         <tbody>
         {%for task in all_tasks %}
                 <tr>
-                    <td><a href="/task/{{ task.id }}/"> {{ task.title }}</a></td>
+                    <td><a href="{%url 'detail' task.id %}"> {{ task.title }}</a></td>
                     <td>
                          {{ task.assignee }}
                     </td>
@@ -61,9 +61,9 @@
                         {{ task.progress }}
                      </td>
                      <td>
-                        <a href="EditTODO_Task1.html" class="btn btn-primary" role="button"><span
-                            class="glyphicon glyphicon-edit"></span>Edit</a>
-                        <a href="" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
+                        <a href="{%url 'detail' task.id %}"class="btn btn-primary" role="button">
+                            <span class="glyphicon glyphicon-edit"></span>Edit</a>
+                        <a href="{%url 'delete' task.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
                     </td>
                     </tr>
         {% endfor %}

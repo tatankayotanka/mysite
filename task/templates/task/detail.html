@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Task {{ task.id }}</title>
+
+    <!--If not specified others, the bootstrap elements taken from https://www.w3schools.com/bootstrap/default.asp -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Date-picker comes from here: https://formden.com/blog/date-picker -->
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+</head>
+{% if task %}
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Task Cracker</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="MainPage.html#TaskTable">Overview</a></li>
+            <li><a href="About.html">Contact Us</a></li>
+            <!--<li class="active"><a href="#">Edit Task {{ task.id }}</a></li>-->
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container" name="main_container">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Page header -->
+            <div class="page-header">
+                <h1>Task {{ task.id }}</h1>
+            </div>
+
+            <!-- Form group -->
+            <div class="form-group">
+                <!-- Task title - small input field-->
+                <label for="title">Task title: </label>
+                <input type="text" class="form-control" id="title" value="{{ task.title }}" maxlength="166">
+                <br>
+                <!-- Task description - wide input field -->
+                <label for="comment">Description:</label>
+                <textarea class="form-control" rows="5" id="comment">{{ task.description }} </textarea>
+                <br>
+                <!-- Assignee - drop-down list -->
+                <label for="sel1">Assignee:</label>
+                <select class="form-control">
+                    <option hidden>{{ task.assignee }}</option>
+                    <option>User 1</option>
+                    <option>User 3</option>
+                    <option>(Not assigned)</option>
+                </select>
+                <br>
+                <!-- Set progress buttons -->
+                <label class="control-label" for="date">Progress:</label>
+                <div class="btn-group btn-group-justified">
+                    <a href="#" class="btn btn-info">Set Not Started</a>
+                    <a href="#" class="btn btn-danger">Set In Progress</a>
+                    <a href="#" class="btn btn-success">Set Finished</a>
+                </div>
+                <br>
+                <!-- Due date - Calendar input -->
+                <label class="control-label" for="date">Due date:</label>
+                <div class='input-group date' name="date">
+                    <input class="form-control" id="date" name="date" value="{{ task.deadline }}" type="text"/>
+                    <script>
+                        $(document).ready(function(){
+                            var date_input=$('input[name="date"]'); //our date input has the name "date"
+                            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+                            var options={
+                                format: 'dd/mm/yyyy',
+                                container: container,
+                                todayHighlight: true,
+                                orientation: "bottom left",
+                                autoclose: true
+                            };
+                            date_input.datepicker(options);
+                        })
+                    </script>
+                </div>
+            </div>
+            <br>
+            <br>
+
+            <!-- Save and Cancel buttons-->
+            <div name="buttons">
+                <a href="MainPage.html" class="btn btn-success" role="button">Save Changes</a>
+                <a href="MainPage.html" class="btn btn-danger" role="button">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+{% endif %}
+</html>
