@@ -75,3 +75,7 @@ def create_task(request):
             "form": form,
         }
     return render(request, 'task/create_task.html', context)
+
+def about(request):
+    return render(request, 'task/about.html')
+

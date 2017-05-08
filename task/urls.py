@@ -13,5 +13,9 @@ urlpatterns = [
     url(r'^create_task/$', views.create_task, name='create_task'),
     url(r'^(?P<task_id>[0-9]+)/delete/$', views.delete_task, name='delete'),
     url(r'^(?P<task_id>[0-9]+)/update/$', views.update_task, name='update'),
+    url(r'^about/$', views.about, name='about'),
+    #url(r'^index/$', views.about, name='about'),
+
+
 
 ]

@@ -7,7 +7,7 @@
         <div class="col-sm-12 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3>Add a New Task</h3>
+                    <h3>Update Task {{ task.title }}</h3>
                     {% if error_message %}
                         <p><strong>{{ error_message }}</strong></p>
                     {% endif %}
@@ -16,7 +16,7 @@
                         {% include 'task/form_template.html' %}
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success" value="update">Submit</button>
+                                <button type="submit" class="btn btn-success" value="update">Update</button>
                             </div>
                         </div>
                     </form>

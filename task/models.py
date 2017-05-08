@@ -5,16 +5,16 @@ from datetime import date
 
 
 class Task(models.Model):
-    NOTSTARTED = 'NS'
-    INPROGRESS = 'IP'
-    FINISHED = 'FIN'
+    NOTSTARTED = 'Not Started'
+    INPROGRESS = 'In Progress'
+    FINISHED = 'Finished'
     PROGRESS_CHOICES = (
         (NOTSTARTED, 'Not Started'),
         (INPROGRESS, 'In Progress'),
         (FINISHED, 'Finished'),
     )
     progress = models.CharField(
-        max_length=2,
+        max_length=20,
         choices=PROGRESS_CHOICES,
         default=NOTSTARTED,
     )
