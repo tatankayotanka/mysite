@@ -31,7 +31,7 @@
                 <h4>The project includes the following TODO tasks</h4>
             </div>
             <div class="col-sm-3" style="background-color:white;">
-                <a href="CreateNewTODO.html" class="btn btn-primary" role="button">Create New Task</a>
+                <a href="{%url 'create_task' %}" class="btn btn-primary" role="button">Create New Task</a>
             </div>
         </div>
     </div>
@@ -61,7 +61,7 @@
                         {{ task.progress }}
                      </td>
                      <td>
-                        <a href="{%url 'detail' task.id %}"class="btn btn-primary" role="button">
+                        <a href="{%url 'update' task.id %}"class="btn btn-primary" role="button">
                             <span class="glyphicon glyphicon-edit"></span>Edit</a>
                         <a href="{%url 'delete' task.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
                     </td>
