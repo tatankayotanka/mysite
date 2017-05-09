@@ -22,7 +22,7 @@ class Task(models.Model):
     assignee = models.CharField(max_length=500)
    # assignee = models.ForeignKey('auth.User',default=1)
     title = models.CharField(max_length=500)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     deadline = models.DateField()
     created_date = models.DateTimeField(
         blank=True, null=True)
