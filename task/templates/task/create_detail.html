@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Edit Task {{ task.id }}</title>
+    <title> Task {{ task.id }}</title>
 
     <!--If not specified others, the bootstrap elements taken from https://www.w3schools.com/bootstrap/default.asp -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,7 +21,7 @@
 {% if task %}
 <body>
 
-<nav class="navbar navbar-inverse navbar-static-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="{%url 'index' %}">Task Cracker</a>
@@ -33,7 +33,7 @@
         </ul>
     </div>
 </nav>
-
+<br><br><br><br>
 <div class="alert alert-success">
     <strong>Excited!</strong> You have just added task {{ task.title }}
 </div>

@@ -19,9 +19,9 @@ class Task(models.Model):
         default=NOTSTARTED,
     )
 
-    assignee = models.CharField(max_length=250)
+    assignee = models.CharField(max_length=500)
    # assignee = models.ForeignKey('auth.User',default=1)
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=500)
     description = models.TextField()
     deadline = models.DateField()
     created_date = models.DateTimeField(
