@@ -24,11 +24,11 @@
 <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html">Task Cracker</a>
+            <a class="navbar-brand" href="{%url 'index' %}">Task Cracker</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="MainPage.html#TaskTable">Overview</a></li>
-            <li><a href="About.html">Contact Us</a></li>
+            <li><a href="{%url 'index' %}">Overview</a></li>
+            <li><a href="{%url 'about' %}">Contact Us</a></li>
             <!--<li class="active"><a href="#">Edit Task {{ task.id }}</a></li>-->
         </ul>
     </div>
@@ -41,12 +41,19 @@
 
             <!-- Page header -->
             <div class="page-header">
-                <h1>Task {{ task.id }}</h1>
+                <h1>Task Detail</h1>
             </div>
 
             <!-- Form group -->
             <div class="form-group">
                 <!-- Task title - small input field-->
+                <label for="sel1">Assignee:</label>
+                 <select class="form-control">
+                    <option hidden>{{ task.assignee }}</option>
+                    <option>User 1</option>
+                    <option>User 3</option>
+                    <option>(Not assigned)</option>
+                </select>
                 <label for="title">Task title: </label>
                 <input type="text" class="form-control" id="title" value="{{ task.title }}" maxlength="166">
                 <br>
@@ -55,13 +62,8 @@
                 <textarea class="form-control" rows="5" id="comment">{{ task.description }} </textarea>
                 <br>
                 <!-- Assignee - drop-down list -->
-                <label for="sel1">Assignee:</label>
-                <select class="form-control">
-                    <option hidden>{{ task.assignee }}</option>
-                    <option>User 1</option>
-                    <option>User 3</option>
-                    <option>(Not assigned)</option>
-                </select>
+
+
                 <br>
                 <!-- Set progress buttons -->
                 <label class="control-label" for="date">Progress:</label>
@@ -74,30 +76,11 @@
                 <label class="control-label" for="date">Due date:</label>
                 <div class='input-group date' name="date">
                     <input class="form-control" id="date" name="date" value="{{ task.deadline }}" type="text"/>
-                    <script>
-                        $(document).ready(function(){
-                            var date_input=$('input[name="date"]'); //our date input has the name "date"
-                            var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-                            var options={
-                                format: 'dd/mm/yyyy',
-                                container: container,
-                                todayHighlight: true,
-                                orientation: "bottom left",
-                                autoclose: true
-                            };
-                            date_input.datepicker(options);
-                        })
-                    </script>
+
                 </div>
             </div>
             <br>
             <br>
-
-            <!-- Save and Cancel buttons-->
-            <div name="buttons">
-                <a href="MainPage.html" class="btn btn-success" role="button">Save Changes</a>
-                <a href="MainPage.html" class="btn btn-danger" role="button">Cancel</a>
-            </div>
         </div>
     </div>
 </div>

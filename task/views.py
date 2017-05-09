@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect
 from django.template import RequestContext
 from .forms import TaskForm #UserForm
 from .models import Task
+from django.contrib import messages
 #views are functions that usually return a HTTP response
 #main page with task overview
 
@@ -39,12 +40,20 @@ def update_task (request, task_id=None):
     if form.is_valid():
         task = form.save(commit=False)
         task.save()
+        messages.success(request, "You just updated Task"+task.title)
+        context={
+            'task':task
+        }
+        messages.success(request, "You just updated Task"+task.title)
+
+        return render(request, 'task/updateMessage.html', context)
     context = {
             'title':task.title,
             'task' : task,
             'form' : form,
         }
     return render(request,'task/task_update_form.html', context)
+    #return render(request, 'task/detail.html', context)
 
 def delete_task(request, task_id):
     #delete a certain task
@@ -70,11 +79,15 @@ def create_task(request):
                     'error_message': 'input incorrect',
                 }
         task.save()
-        return render(request, 'task/detail.html', {'task': task})
+        messages.success(request, 'Profile details updated.')
+        #return render(request, 'task/detail.html', {'task': task})
+        return render(request, 'task/create_detail.html', {'task': task})
+
     context = {
             "form": form,
         }
     return render(request, 'task/create_task.html', context)
+
 
 def about(request):
     return render(request, 'task/about.html')
