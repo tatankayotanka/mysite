@@ -14,11 +14,11 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a href="{%url 'index' %}"class="navbar-brand" >Task Cracker</a>
+                <a href="{%url 'task:index' %}"class="navbar-brand" >Task Cracker</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="{% block overview_active %}{% endblock %}"><a href="{%url 'index' %}">Overview</a></li>
-                <li><a href="{%url 'about' %}">Contact Us</a></li>
+                <li class="{% block overview_active %}{% endblock %}"><a href="{%url 'task:index' %}">Overview</a></li>
+                <li><a href="{%url 'task:about' %}">Contact Us</a></li>
             </ul>
         </div>
     </nav>

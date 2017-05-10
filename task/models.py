@@ -1,3 +1,4 @@
+from django.contrib.auth.models import Permission, User
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils import timezone
@@ -18,9 +19,8 @@ class Task(models.Model):
         choices=PROGRESS_CHOICES,
         default=NOTSTARTED,
     )
-
+    user = models.ForeignKey(User,default=1)
     assignee = models.CharField(max_length=500)
-   # assignee = models.ForeignKey('auth.User',default=1)
     title = models.CharField(max_length=500)
     description = models.TextField(blank=True, null=True)
     deadline = models.DateField()

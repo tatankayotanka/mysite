@@ -11,9 +11,9 @@ class TaskForm(forms.ModelForm):
         fields = ['title', 'assignee', 'description', 'progress', 'deadline']
 
 
-#class UserForm(forms.ModelForm):
-    #password = forms.CharField(widget=forms.PasswordInput)
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
 
-    #class Meta:
-        #model = User
-        #fields = ['username', 'email', 'password']
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
