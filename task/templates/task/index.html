@@ -18,13 +18,11 @@
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#TaskTable">Overview</a></li>
-                <li><a href="{%url 'about' %}">Contact Us</a></li>
+                <li><a href="{%url 'task:about' %}">Contact Us</a></li>
             </ul>
         </div>
     </nav>
     <br><br><br><br><br>
-
-{% if all_tasks %}
     <div class="container">
         <h1 id="TaskTable">Task Overview</h1>
         <div class="row">
@@ -32,10 +30,13 @@
                 <h4>The project includes the following TODO tasks</h4>
             </div>
             <div class="col-sm-3" style="background-color:white;">
-                <a href="{%url 'create_task' %}" class="btn btn-primary" role="button">Create New Task</a>
+                <a href="{%url 'task:create_task' %}" class="btn btn-primary" role="button">Create New Task</a>
             </div>
         </div>
     </div>
+
+
+
 
     <div class="container">
     <table class="table">
@@ -49,9 +50,9 @@
             </tr>
         </thead>
         <tbody>
-        {%for task in all_tasks %}
+        {%for task in tasks %}
                 <tr>
-                    <td><a href="{%url 'detail' task.id %}"> {{ task.title }}</a></td>
+                    <td><a href="{%url 'task:detail' task.id %}"> {{ task.title }}</a></td>
                     <td>
                          {{ task.assignee }}
                     </td>
@@ -62,18 +63,17 @@
                         {{ task.progress }}
                      </td>
                      <td>
-                        <a href="{%url 'update' task.id %}"class="btn btn-primary" role="button">
+                        <a href="{%url 'task:update' task.id %}"class="btn btn-primary" role="button">
                             <span class="glyphicon glyphicon-edit"></span>Edit</a>
-                        <a href="{%url 'delete' task.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
+                        <a href="{%url 'task:delete' task.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
                     </td>
                     </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-{% else %}
-    <h3>You haven't added any tasks</h3>
-{% endif %}
+
+
 
 </body>
 </html>
