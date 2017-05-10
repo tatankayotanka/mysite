@@ -17,7 +17,7 @@
                 <a href="{%url 'index' %}"class="navbar-brand" >Task Cracker</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{%url 'index' %}">Overview</a></li>
+                <li class="{% block overview_active %}{% endblock %}"><a href="{%url 'index' %}">Overview</a></li>
                 <li><a href="{%url 'about' %}">Contact Us</a></li>
             </ul>
         </div>
