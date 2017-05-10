@@ -20,4 +20,5 @@ urlpatterns = [
     #manages the urls of the whole site, when user requests task, it goes to task.urls
     url(r'^admin/', admin.site.urls),
     url(r'^task/', include('task.urls')),
+    url(r'^', include('task.urls')),
 ]

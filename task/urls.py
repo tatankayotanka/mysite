@@ -7,6 +7,7 @@ urlpatterns = [
    # url(r'^logout_user/$', views.logout_user, name='logout_user'),
     #user gets to task, and uses the function index in views.py
     #/task/
+
     url(r'^$', views.index, name='index'),
     #/task/12/ might need to consider to /task/12/edit
     url(r'^(?P<task_id>[0-9]+)/$', views.detail, name='detail'),
