@@ -22,8 +22,14 @@
             </ul>
         </div>
     </nav>
-    <div class="alert alert-success">
-    <strong>Yeah!</strong> You have just updated task {{ task.title }} successfully
-  </div>
+    <div class="container">
+        <div class="alert alert-success">
+        <strong>Yeah!</strong> You have just updated task {{ task.title }} successfully
+        </div>
+        <br><br>
+        <!-- Got it! button -->
+        <a href="{%url 'task:index' %}" class="btn btn-info btn-lg">Got it!</a>
+        <br><br>
+    </div>
 </body>
 </html>
