@@ -34,29 +34,29 @@
 
             <!-- Page header -->
             <div class="page-header">
-                <h1>Task Detail</h1>
+                <h1>Task Detail: {{ task.title }}</h1>
             </div>
 
             <!-- Form group -->
             <div class="form-group">
                 <!-- Task title - small input field-->
                 <label for="assignee">Assignee:</label>
-                <div class="well-sm" id="assignee">{{ task.assignee }}</div>
+                <div class="well well-sm" id="assignee">{{ task.assignee }}</div>
                 <br>
                 <label for="title">Task title: </label>
-                <div class="well-sm" id="title">{{ task.title }}</div>
+                <div class="well well-sm" id="title">{{ task.title }}</div>
                 <br>
                 <!-- Task description - wide input field -->
                 <label for="comment">Description:</label>
-                <div class="well-lg" id="comment">{{ task.description }}</div>
+                <div class="well well-lg" id="comment">{{ task.description }}</div>
                 <br>
                 <!-- Set progress -->
                 <label class="control-label" for="progress">Progress:</label>
-                <div class="well-sm" id="progress">{{ task.title }}</div>
+                <div class="well well-sm" id="progress">{{ task.title }}</div>
                 <br>
                 <!-- Due date -->
                 <label class="control-label" for="date">Due date:</label>
-                <div class="well-sm" id="date">{{ task.deadline }}</div>
+                <div class="well well-sm" id="date">{{ task.deadline }}</div>
                 </div>
             <br>
             <br>
