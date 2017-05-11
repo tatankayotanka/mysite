@@ -8,10 +8,95 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font: 14px/1.4 Georgia, Serif;
+}
+#page-wrap {
+	margin: 50px;
+}
+p {
+	margin: 20px 0;
+}
+
+	/*
+	Generic Styling, for Desktops/Laptops
+	*/
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	/* Zebra striping */
+	tr:nth-of-type(odd) {
+		background: #eee;
+	}
+	th {
+		background: #333;
+		color: white;
+		font-weight: bold;
+	}
+	td, th {
+		padding: 8px;
+		border: 1px solid #ccc;
+        /* Put the content of each row in the center, so when the screen becomes really small, assignee and eva won't overlap */
+		text-align: center;
+	}
+        @media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr { border: 1px solid #ccc; }
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 20px;
+		white-space: nowrap;
+	}
+
+	/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "Title"; text-align: left}
+	td:nth-of-type(2):before { content: "Assignee";  text-align: left}
+	td:nth-of-type(3):before { content: "Deadline"; text-align: left }
+	td:nth-of-type(4):before { content: "Progress"; text-align: left }
+	td:nth-of-type(5):before { content: "Operations";  text-align: left; margin-right: 2px}
+
+}
+    </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand">Task Cracker</a>
@@ -23,9 +108,9 @@
             </ul>
         </div>
     </nav>
-    <br><br><br><br><br>
+  <!--  <br><br><br><br><br>
     <div class="container">
-        <h1 id="TaskTable">Task Overview</h1>
+        <h2 id="TaskTable">Task Overview</h2>
         <div class="row">
             <div class="col-sm-9" style="background-color:white;">
                 <h4>The project includes the following TODO tasks</h4>
@@ -34,45 +119,48 @@
                 <a href="{%url 'task:create_task' %}" class="btn btn-primary" role="button">Create New Task</a>
             </div>
         </div>
-    </div>
+    </div>-->
 
 
 
 
     <div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Assignee</th>
-                <th>Deadline</th>
-                <th>Progress</th>
-                <th>Operations</th>
-            </tr>
-        </thead>
-        <tbody>
-        {%for task in tasks %}
+        <h2>Task Overview</h2>
+        <p>The projec includes the following tasks&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="{%url 'task:create_task' %}" class="btn btn-primary" role="button">Create New Task</a></p>
+
+        <table class="table table-hover">
+            <thead>
                 <tr>
-                    <td><a href="{%url 'task:detail' task.id %}"> {{ task.title }}</a></td>
-                    <td>
-                         {{ task.assignee }}
-                    </td>
-                     <td>
-                         {{ task.deadline }}
-                      </td>
-                      <td>
-                        {{ task.progress }}
-                     </td>
-                     <td>
-                        <a href="{%url 'task:update' task.id %}"class="btn btn-primary" role="button">
-                            <span class="glyphicon glyphicon-edit"></span>Edit</a>
-                        <a href="{%url 'task:delete' task.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
-                    </td>
-                    </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-</div>
+                    <th>Title</th>
+                    <th>Assignee</th>
+                    <th>Deadline</th>
+                    <th>Progress</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+            {%for task in tasks %}
+                    <tr>
+                        <td><a href="{%url 'task:detail' task.id %}"> {{ task.title }}</a></td>
+                        <td>
+                             {{ task.assignee }}
+                        </td>
+                         <td>
+                             {{ task.deadline }}
+                          </td>
+                          <td>
+                            {{ task.progress }}
+                         </td>
+                         <td>
+                            <a href="{%url 'task:update' task.id %}"class="btn btn-primary" role="button">
+                                <span class="glyphicon glyphicon-edit"></span>Edit</a>
+                            <a href="{%url 'task:delete' task.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
+                        </td>
+                        </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
 
