@@ -4,24 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Task {{ task.id }}</title>
+    <title>Task {{ task.title }}</title>
 
     <!--If not specified others, the bootstrap elements taken from https://www.w3schools.com/bootstrap/default.asp -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <!-- Date-picker comes from here: https://formden.com/blog/date-picker -->
-    <!-- Bootstrap Date-Picker Plugin -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 </head>
 {% if task %}
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="{%url 'task:index' %}">Task Cracker</a>
@@ -30,13 +25,11 @@
             <li><a href="{%url 'task:index' %}">Overview</a></li>
             <li><a href="{%url 'task:about' %}">Contact Us</a></li>
             <li><a href="{% url 'task:logout_user' %}">Logout</a></li>
-            <!--<li class="active"><a href="#">Edit Task {{ task.id }}</a></li>-->
         </ul>
     </div>
 </nav>
-<br><br><br><br>
 
-<div class="container" name="main_container" style="margin-top: 100px">
+<div class="container" name="main_container">
     <div class="row">
         <div class="col-sm-12">
 
@@ -49,12 +42,8 @@
             <div class="form-group">
                 <!-- Task title - small input field-->
                 <label for="sel1">Assignee:</label>
-                 <select class="form-control">
-                    <option hidden>{{ task.assignee }}</option>
-                    <option>User 1</option>
-                    <option>User 3</option>
-                    <option>(Not assigned)</option>
-                </select>
+                <input type="text" class="form-control" id="assignee" value="{{ task.assignee }}" maxlength="166">
+                <br>
                 <label for="title">Task title: </label>
                 <input type="text" class="form-control" id="title" value="{{ task.title }}" maxlength="166">
                 <br>
@@ -62,10 +51,7 @@
                 <label for="comment">Description:</label>
                 <textarea class="form-control" rows="5" id="comment">{{ task.description }} </textarea>
                 <br>
-                <!-- Assignee - drop-down list -->
 
-
-                <br>
                 <!-- Set progress buttons -->
                 <label class="control-label" for="date">Progress:</label>
                 <div class="btn-group btn-group-justified">
