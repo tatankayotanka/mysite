@@ -13,3 +13,4 @@ task/migrations/__pycache__/
 *.pyc
 task/__pycache__/apps.cpython-36.pyc
 db.sqlite3
+*.sqlite3
