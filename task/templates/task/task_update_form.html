@@ -2,7 +2,11 @@
 {% extends 'task/base.html' %}
 {% block body %}
     <div class="container">
-        <h3>Edit Task</h3><br>
+
+        <div class="page-header">
+                <h2>Edit Task : {{ task.title }}</h2>
+            </div>
+
         {% if error_message %}
             <p><strong>{{ error_message }}</strong></p>
         {% endif %}
