@@ -98,7 +98,7 @@ only screen and (max-width: 760px),
     <nav class="navbar navbar-inverse navbar-static-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">Task Cracker</a>
+                <a class="navbar-brand" href="{%url 'task:index' %}">Task Cracker</a>
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#TaskTable">Overview</a></li>
@@ -126,7 +126,7 @@ only screen and (max-width: 760px),
     <div class="container">
         <h2>Project Overview</h2>
         <p>The project includes the following tasks</p>
-        <a href="{%url 'task:create_task' %}" class="btn btn-primary" role="button">Create New Task</a>
+
 
         <table class="table table-hover">
             <thead>
@@ -153,13 +153,17 @@ only screen and (max-width: 760px),
                          </td>
                          <td>
                             <a href="{%url 'task:update' task.id %}"class="btn btn-primary" role="button">
-                                <span class="glyphicon glyphicon-edit"></span>Edit</a>
-                            <a href="{%url 'task:delete' task.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span>Delete</a>
+                                <span class="glyphicon glyphicon-edit"></span> Edit</a>
+                            <a href="{%url 'task:delete' task.id %}" class="btn btn-danger" role="button"><span class="glyphicon glyphicon-remove-sign"></span> Delete</a>
                         </td>
                         </tr>
             {% endfor %}
             </tbody>
         </table>
+
+        <br><br>
+        <a href="{%url 'task:create_task' %}" class="btn btn-success btn-lg" role="button">Create New Task</a>
+
     </div>
 
 
