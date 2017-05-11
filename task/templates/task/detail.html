@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Task {{ task.title }}</title>
+    <title>View Task: {{ task.title }}</title>
 
     <!--If not specified others, the bootstrap elements taken from https://www.w3schools.com/bootstrap/default.asp -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -58,8 +58,10 @@
                 <label class="control-label" for="date">Due date:</label>
                 <div class="well well-sm" id="date">{{ task.deadline }}</div>
                 </div>
-            <br>
-            <br>
+            <br><br>
+
+            <!-- Got it! button -->
+            <a href="{%url 'task:index' %}" class="btn btn-info btn-lg">Got it!</a>
         </div>
     </div>
 </div>

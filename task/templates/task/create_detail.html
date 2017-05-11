@@ -30,7 +30,7 @@
 
 <div class="container">
     <div class="alert alert-success">
-        <strong>Great!</strong> You have just added task {{ task.title }}
+        <strong>Great!</strong> You have just added task: {{ task.title }}
     </div>
 </div>
 <div class="container" name="main_container">
@@ -42,31 +42,32 @@
                 <h1>Task Detail</h1>
             </div>
 
-            <!-- Form group -->
+             <!-- Form group -->
             <div class="form-group">
                 <!-- Task title - small input field-->
-                <label for="sel1">Assignee:</label>
-                <input type="text" class="form-control" id="assignee" value="{{ task.assignee }}" maxlength="166">
+                <label for="assignee">Assignee:</label>
+                <div class="well well-sm" id="assignee">{{ task.assignee }}</div>
                 <br>
                 <label for="title">Task title: </label>
-                <input type="text" class="form-control" id="title" value="{{ task.title }}" maxlength="166">
+                <div class="well well-sm" id="title">{{ task.title }}</div>
                 <br>
                 <!-- Task description - wide input field -->
                 <label for="comment">Description:</label>
-                <textarea class="form-control" rows="5" id="comment">{{ task.description }} </textarea>
+                <div class="well well-lg" id="comment">{{ task.description }}</div>
                 <br>
-                <!-- Set progress buttons -->
-                <label class="control-label" for="date">Progress:</label>
-                <div class="btn-group btn-group-justified">
-                    <a href="#" class="btn btn-info">{{ task.progress }}</a>
-                </div>
+                <!-- Set progress -->
+                <label class="control-label" for="progress">Progress:</label>
+                <div class="well well-sm" id="progress">{{ task.title }}</div>
                 <br>
-                <!-- Due date - Calendar input -->
+                <!-- Due date -->
                 <label class="control-label" for="date">Due date:</label>
-                <div class='input-group date' name="date">
-                    <input class="form-control" id="date" name="date" value="{{ task.deadline }}" type="text"/>
-                </div>
+                <div class="well well-sm" id="date">{{ task.deadline }}</div>
             </div>
+            <br><br>
+
+            <!-- Got it! button -->
+            <a href="{%url 'task:index' %}" class="btn btn-info btn-lg">Got it!</a>
+
         </div>
     </div>
 </div>
