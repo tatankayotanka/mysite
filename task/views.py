@@ -8,45 +8,39 @@ from django.template import RequestContext
 from .forms import TaskForm, UserForm
 from .models import Task
 from django.contrib import messages
-#views are functions that usually return a HTTP response
-#main page with task overview
+# Views are functions that usually return a HTTP response
 
 
 def index(request):
+    """Showing main page with task overview"""
     if not request.user.is_authenticated:
-        return render(request,'task/login.html')
+        return render(request, 'task/login.html')
     else:
         tasks = Task.objects.filter(user=request.user)
         return render(request, 'task/index.html', {
                 'tasks': tasks,
             })
 
-#for review and edit task
+
 def detail(request, task_id):
-    #use get to retrieve an instance, not filter
+    """Viewing and editing task; use get to retrieve an instance, not filter"""
     task = Task.objects.get(pk=task_id)
     context = {
-        'task':task,
+        'task': task,
     }
-    return render(request,'task/detail.html',context)
-'''def update_location(request, pk=None):
-    obj = get_object_or_404(Location, pk=pk)
-    form = LocationForm(request.POST or None,
-                        request.FILES or None, instance=obj)
-    if request.method == 'POST':
-        if form.is_valid():
-           form.save()
-           return redirect('/accounts/loggedin/locations/all/')
-    return render(request, 'locations/location_update.html', {'form': form})'''
-def update_task (request, task_id=None):
+    return render(request, 'task/detail.html', context)
+
+
+def update_task(request, task_id=None):
+    """Updating an edited task"""
     task = get_object_or_404(Task, id=task_id)
     form = TaskForm(request.POST or None, instance=task)
     if form.is_valid():
         task = form.save(commit=False)
         task.save()
         messages.success(request, "You just updated Task"+task.title)
-        context={
-            'task':task
+        context = {
+            'task': task
         }
         messages.success(request, "You just updated Task"+task.title)
 
@@ -57,17 +51,20 @@ def update_task (request, task_id=None):
             'form' : form,
         }
     return render(request,'task/task_update_form.html', context)
-    #return render(request, 'task/detail.html', context)
+
 
 def delete_task(request, task_id):
-    #delete a certain task
+    """Deleting a certain task"""
     task = get_object_or_404(Task, pk=task_id)
     context = {
         'task': task,
     }
     task.delete()
     return render(request,'task/delete.html',context)
+
+
 def create_task(request):
+    """Creating a new task"""
     if not request.user.is_authenticated():
         return render(request, 'task/login.html')
     else:
@@ -75,7 +72,7 @@ def create_task(request):
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
-            task.assignee= request.POST.get('assignee')
+            task.assignee = request.POST.get('assignee')
             task.title = request.POST.get('title')
             task.progress = request.POST.get('progress')
             task.deadline = request.POST.get('deadline')
@@ -85,8 +82,6 @@ def create_task(request):
                 'form': form,
              }
             task.save()
-            #messages.success(request, 'Profile details updated.')
-            #return render(request, 'task/detail.html', {'task': task})
             return render(request, 'task/create_detail.html', {'task': task})
 
         context = {
@@ -97,9 +92,12 @@ def create_task(request):
 
 
 def about(request):
+    """Showing the about page"""
     return render(request, 'task/about.html')
 
+
 def logout_user(request):
+    """Logout a user"""
     logout(request)
     form = UserForm(request.POST or None)
     context = {
@@ -109,6 +107,7 @@ def logout_user(request):
 
 
 def login_user(request):
+    """Login a user including error handling"""
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -126,6 +125,7 @@ def login_user(request):
 
 
 def register(request):
+    """Register a user"""
     form = UserForm(request.POST or None)
     if form.is_valid():
         user = form.save(commit=False)

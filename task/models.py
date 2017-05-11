@@ -6,6 +6,7 @@ from datetime import date
 
 
 class Task(models.Model):
+    """Creates models for Task"""
     NOTSTARTED = 'Not Started'
     INPROGRESS = 'In Progress'
     FINISHED = 'Finished'
@@ -24,20 +25,18 @@ class Task(models.Model):
     title = models.CharField(max_length=500)
     description = models.TextField(blank=True, null=True)
     deadline = models.DateField()
-    created_date = models.DateTimeField(
-        blank=True, null=True)
+    created_date = models.DateTimeField(blank=True, null=True)
 
     def get_absolute_url(self):
+        """Gets task URL"""
         return reverse('task:detail', kwargs={'pk':self.pk})
 
     def create(self):
-      self.published_date = timezone.now()
-      self.save()
+        """Creates a task"""
+        self.published_date = timezone.now()
+        self.save()
 
     def __str__(self):
-      return self.title
+        """Returns string representation of a task"""
+        return self.title
 
-
-
-
-# Create your models here.
